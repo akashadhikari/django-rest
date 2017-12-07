@@ -9,6 +9,9 @@ from .models import Bucketlist, User
 
 from rest_framework import permissions
 
+def index(request):
+    return HttpResponse("You're looking at question")
+
 class CreateView(generics.ListCreateAPIView):
     """This class handles the GET and POSt requests of our rest api."""
     queryset = Bucketlist.objects.all()
@@ -34,6 +37,10 @@ class UserView(generics.ListAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
+class UserActionsView(generics.ListAPIView):
+    """View to list the user queryset."""
+    queryset = User.objects.filter(id=2)
+    serializer_class = UserSerializer
 
 class UserDetailsView(generics.RetrieveAPIView):
     """View to retrieve a user instance."""

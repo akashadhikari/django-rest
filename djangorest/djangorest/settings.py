@@ -67,7 +67,7 @@ ROOT_URLCONF = 'djangorest.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -91,6 +91,15 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
+
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'rest',
+    #     'USER': 'root',
+    #     'PASSWORD': 'akash',
+    #     'HOST': 'localhost',
+    #     'PORT': '',
+    # }
 }
 
 
