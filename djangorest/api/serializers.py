@@ -21,3 +21,11 @@ class UserSerializer(serializers.ModelSerializer):
         """Map this serializer to the default django user model."""
         model = User
         fields = ('id', 'username', 'bucketlists')
+
+class UserActionsSerializers(serializers.ModelSerializer):
+
+    owner = serializers.ReadOnlyField(source='owner.username')
+
+    class Meta:
+        model = Bucketlist
+        fields = ('owner', 'date_created')

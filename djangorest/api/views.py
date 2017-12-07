@@ -4,7 +4,7 @@ from django.shortcuts import render
 
 from rest_framework import generics, permissions
 from .permissions import IsOwner
-from .serializers import BucketlistSerializer, UserSerializer
+from .serializers import BucketlistSerializer, UserSerializer, UserActionsSerializers
 from .models import Bucketlist, User
 
 from rest_framework import permissions
@@ -39,8 +39,9 @@ class UserView(generics.ListAPIView):
 
 class UserActionsView(generics.ListAPIView):
     """View to list the user queryset."""
-    queryset = User.objects.filter(id=2)
-    serializer_class = UserSerializer
+    # queryset = User.objects.filter(id=1)
+    queryset = Bucketlist.objects.raw('SELECT * FROM api_bucketlist')
+    serializer_class = UserActionsSerializers
 
 class UserDetailsView(generics.RetrieveAPIView):
     """View to retrieve a user instance."""
