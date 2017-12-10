@@ -19,6 +19,16 @@ class Bucketlist(models.Model):
         """Return a human readable representation of the model instance."""
         return "{}".format(self.name)
 
+class UserActions(models.Model):
+    owner_id = models.IntegerField(primary_key=True)
+    today_count = models.IntegerField()
+    yesterday_count = models.IntegerField()
+    week_count = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'useractions'
+
 # This receiver handles token creation immediately a new user is created.
 @receiver(post_save, sender=User)
 def create_auth_token(sender, instance=None, created=False, **kwargs):

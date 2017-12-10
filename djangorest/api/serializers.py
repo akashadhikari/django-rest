@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Bucketlist, User
+from .models import Bucketlist, User, UserActions
 
 class BucketlistSerializer(serializers.ModelSerializer):
     """Serializer to map the Model instance into JSON format."""
@@ -22,10 +22,16 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ('id', 'username', 'bucketlists')
 
+# class UserActionsSerializers(serializers.ModelSerializer):
+
+#     owner = serializers.ReadOnlyField(source='owner.username')
+
+#     class Meta:
+#         model = Bucketlist
+#         fields = ('owner', 'date_created')
+
 class UserActionsSerializers(serializers.ModelSerializer):
 
-    owner = serializers.ReadOnlyField(source='owner.username')
-
     class Meta:
-        model = Bucketlist
-        fields = ('owner', 'date_created')
+        model = UserActions
+        fields = ('owner_id', 'today_count', 'yesterday_count', 'week_count')
